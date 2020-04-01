@@ -2,6 +2,8 @@
 #include <irq.h>
 #include <idt.h>
 
+// Interrupt Request, Interrupções desencadeadas pelo hardware em um sistema
+
 #define PIC_EOI                 0x20
 
 #define PIC_MASTER_CMD_PORT     0x20

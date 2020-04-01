@@ -2,6 +2,8 @@
 #include <isr.h>
 #include <idt.h>
 
+// Interrupt Service Routines, Rotinas de serviços de interrupção
+
 extern void isr0();
 extern void isr1();
 extern void isr2();

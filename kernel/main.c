@@ -4,7 +4,7 @@
 
 void start_kernel()
 {
-	__asm__ __volatile__("xchg %bx, %bx");
+	//__asm__ __volatile__("xchg %bx, %bx");
 	
 	install_gdt();
 	install_idt();
@@ -20,7 +20,7 @@ void start_kernel()
 	
 	init_video();
 	
-	__asm__ __volatile__("xchg %bx, %bx");
+	//__asm__ __volatile__("xchg %bx, %bx");
 	
 mylabel:
 	goto mylabel;

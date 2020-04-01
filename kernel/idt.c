@@ -1,5 +1,7 @@
 #include <system.h>
 
+// Tabelas de descritores de interrupção
+
 typedef struct
 {
     uint16          base_lo;
