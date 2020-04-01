@@ -1,4 +1,5 @@
 #include <system.h>
+#include <isr.h>
 #include <idt.h>
 
 extern void isr0();
@@ -109,7 +110,7 @@ char *exception_messages[] =
     "Reserved"
 };
 
-void fault_handler(INT_REGS *r)
+void fault_handler(regs *r)
 {
     if (r->int_no < 32)
     {

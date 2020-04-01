@@ -1,4 +1,5 @@
 #include <system.h>
+#include <irq.h>
 #include <idt.h>
 
 #define PIC_EOI                 0x20
@@ -35,7 +36,7 @@ void *irq_routines[16] =
     0, 0, 0, 0, 0, 0, 0, 0
 };
 
-void irq_install_handler(int irq, void(*handler)(INT_REGS *r))
+void irq_install_handler(int irq, void(*handler)(regs *r))
 {
     irq_routines[irq] = handler;
 }
@@ -89,9 +90,9 @@ void install_irq()
 	set_idt_interrupt_gate(47, (unsigned)irq15);
 }
 
-void irq_handler(INT_REGS *r)
+void irq_handler(regs *r)
 {
-    void (*handler)(INT_REGS *r);
+    void (*handler)(regs *r);
 
     handler = irq_routines[r->int_no - 32];
     if (handler)

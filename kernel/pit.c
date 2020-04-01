@@ -1,6 +1,6 @@
 #include <system.h>
-#include <idt.h>
 #include <irq.h>
+#include <isr.h>
 
 int timer_ticks = 0;
 
@@ -12,7 +12,7 @@ void timer_phase(int hz)
     outportb(0x40, divisor >> 8);
 }
 
-void timer_handler(INT_REGS *r)
+void timer_handler(regs *r)
 {
     timer_ticks++;
 }
