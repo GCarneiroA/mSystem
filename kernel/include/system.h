@@ -30,6 +30,9 @@ extern void init_video();
 extern void install_idt();
 extern void install_isrs();
 
+/* GDT */
+extern void install_gdt();
+
 
 /* System */
 extern void io_wait();

@@ -2,12 +2,12 @@
 #include <irq.h>
 #include <pit.h>
 
-
 void start_kernel()
 {
 	__asm__ __volatile__("xchg %bx, %bx");
 	
 	__asm__ __volatile__("cli");
+	install_gdt();
 	install_idt();
 	install_isrs();
 	install_irq();

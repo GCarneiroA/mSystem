@@ -75,7 +75,4 @@ start:
 	mClearPrefetchQueue
 	mSetup386Segments
 	mJumpToKernel
-
-
-
-# .fill 1024, 1, 1              # Pad 1K with 1-bytes to test file larger than 1 sector
+	
