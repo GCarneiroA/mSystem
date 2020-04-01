@@ -33,6 +33,8 @@ extern void install_isrs();
 /* GDT */
 extern void install_gdt();
 
+/* Timer */
+void timer_wait(uint32 ticks);
 
 /* System */
 extern void io_wait();

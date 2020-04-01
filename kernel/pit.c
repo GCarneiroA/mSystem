@@ -21,3 +21,9 @@ void timer_install()
 {
     irq_install_handler(0, timer_handler);
 }
+
+void timer_wait(uint32 ticks)
+{
+    unsigned long eticks = timer_ticks + ticks;
+    while (timer_ticks < eticks);
+}
