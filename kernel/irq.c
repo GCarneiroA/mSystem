@@ -4,14 +4,11 @@
 
 #define PIC_EOI                 0x20
 
-
 #define PIC_MASTER_CMD_PORT     0x20
 #define PIC_MASTER_DATA_PORT    0x21
 
-
 #define PIC_SLAVE_CMD_PORT      0xA0
 #define PIC_SLAVE_DATA_PORT     0xA1
-
 
 extern void irq0();
 extern void irq1();
@@ -92,9 +89,7 @@ void install_irq()
 
 void irq_handler(regs *r)
 {
-    void (*handler)(regs *r);
-
-    handler = irq_routines[r->int_no - 32];
+    void (*handler)(regs *r) = irq_routines[r->int_no - 32];
     if (handler)
     {
         handler(r);

@@ -6,12 +6,14 @@ void start_kernel()
 {
 	__asm__ __volatile__("xchg %bx, %bx");
 	
-	__asm__ __volatile__("cli");
 	install_gdt();
 	install_idt();
 	install_isrs();
+
+	__asm__ __volatile__("cli");
 	install_irq();
 	__asm__ __volatile__("sti");
+	
 	timer_install();
 	
 	init_video();
