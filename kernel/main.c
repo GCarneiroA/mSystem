@@ -13,6 +13,8 @@ void start_kernel()
 	__asm__ __volatile__("cli");
 	install_irq();
 	__asm__ __volatile__("sti");
+
+	keyboard_install();
 	
 	timer_install();
 	

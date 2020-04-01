@@ -9,8 +9,11 @@ kernel.bin: kernel.out
 	objcopy -O binary kernel.out kernel.bin
 	copy kernel.bin ..
 
-kernel.out: kernel.o isr_asm.o gdt_asm.o idt_asm.o irq_asm.o main.o system.o mem.o port.o gdt.o idt.o irq.o isr.o pit.o display.o string.o
-	$(CC) $(CFLAGS) -T link.ld -o kernel.out kernel.o isr_asm.o gdt_asm.o idt_asm.o irq_asm.o main.o system.o mem.o gdt.o idt.o irq.o isr.o port.o pit.o display.o string.o -e start
+kernel.out: kernel.o isr_asm.o gdt_asm.o idt_asm.o irq_asm.o main.o system.o mem.o port.o gdt.o idt.o irq.o isr.o pit.o display.o string.o kb.o
+	$(CC) $(CFLAGS) -T link.ld -o kernel.out kernel.o isr_asm.o gdt_asm.o idt_asm.o irq_asm.o main.o system.o mem.o gdt.o idt.o irq.o isr.o port.o pit.o display.o string.o kb.o -e start
+
+kb.o: kb.c
+	$(CC) $(CFLAGS) -o kb.o -c kb.c
 
 gdt.o: gdt.c
 	$(CC) $(CFLAGS) -o gdt.o -c gdt.c

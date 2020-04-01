@@ -24,6 +24,7 @@ extern void outportb(uint16 _port, uint8 _data);
 extern void settextcolor(uint8 forecolor, uint8 backcolor);
 extern void cls();
 extern void puts(char *text);
+extern void putch(char c);
 extern void init_video();
 
 /* ISR */
@@ -38,5 +39,8 @@ void timer_wait(uint32 ticks);
 
 /* System */
 extern void io_wait();
+
+/* Keyboard */
+extern void keyboard_install();
 
 #endif
