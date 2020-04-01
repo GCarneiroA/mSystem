@@ -7,7 +7,7 @@ typedef struct
     uint8           always0;
     uint8           flags;
     uint16          base_hi;
-} __attribute__((packed)) IDT_DESCRIPTOR;
+} __attribute__((packed)) idt_entry;
 
 #define IDT_DESCRIPTOR_INTERRUPT_GATE   0x8e
 
@@ -17,11 +17,10 @@ typedef struct
 {
     uint16          limit;
     uint32          base;
-} __attribute__((packed)) IDT_PTR;
+} __attribute__((packed)) idt_ptr;
 
-IDT_DESCRIPTOR idt[256];
-
-extern IDT_PTR idtp;
+idt_entry idt[256];
+idt_ptr idtp;
 
 void set_idt_gate(uint8 num, uint32 base, uint16 sel, uint8 flags)
 {
@@ -43,14 +42,14 @@ void set_idt_trap_gate(uint8 num, uint32 base)
     set_idt_gate(num, base, 0x08, IDT_DESCRIPTOR_TRAP_GATE);
 }
 
-extern void load_idt();
+extern void idt_load();
 
 void install_idt()
 {
-    idtp.limit = (sizeof(IDT_DESCRIPTOR) * 256) - 1;
+    idtp.limit = (sizeof(idt_entry) * 256) - 1;
     idtp.base = (uint32) &idt;
 
-    memset((uint8*) &idt, 0, sizeof(IDT_DESCRIPTOR) * 256);
+    memset((uint8*) &idt, 0, sizeof(idt_entry) * 256);
 
-    load_idt();
+    idt_load();
 }

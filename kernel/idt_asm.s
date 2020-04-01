@@ -2,11 +2,11 @@
 .intel_syntax noprefix
 .text
 
-.global _idtp
-.global _load_idt
-_load_idt:
+.extern _idtp
+.global _idt_load
+_idt_load:
     lidt _idtp
-    ret  
+    ret
 
 .global _isr0
 .global _isr1
@@ -109,5 +109,5 @@ isr_common_stub:
     add     esp, 8     # Cleans up the pushed error code and pushed ISR number
     iret             # pops 5 things at once: CS, EIP, EFLAGS, SS, and ESP!
 
-.section .data
-    _idtp:       .byte 1,2,3,4,5,6
+# .section .data
+  #  _idtp:       .byte 1,2,3,4,5,6
